@@ -6,7 +6,7 @@ $errore ="";
 
     if ($_SERVER["REQUEST_METHOD"]=="POST"){
         $nome = trim($_POST['nome']);
-        $cognome = trim($_POST['nome']);
+        $cognome = trim($_POST['cognome']);
         $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
         $password = $_POST['password'];
         
@@ -18,7 +18,7 @@ $errore ="";
             }
             else{
                 $stmt = $pdo->prepare("SELECT id FROM utenti WHERE EMAIL = ?");
-                $stmt = execute([$email]);
+                $stmt -> execute([$email]);
                 
                 if($stmt->fetch()){
                     $errore = "Questa email è gia registrata.";
