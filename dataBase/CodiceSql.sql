@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS transazioni (
     -- DROP COLUMN penale_denaro_min DECIMAL(10,2) NOT NULL,
     valore_oggetti_karma INT NOT NULL,
     foto_oggetto VARCHAR(255) DEFAULT NULL, -- Qui l'utente salverà un URL testuale per non superare i 5MB!
-    minuti_arrivo_proprietario INT DEFAULT NULL,
+    -- DROP COLUMN minuti_arrivo_proprietario INT DEFAULT NULL,
     codice_restituzione VARCHAR(4) DEFAULT NULL,
     data_inizio_effettiva TIMESTAMP NULL DEFAULT NULL,
     data_restituzione_effettiva TIMESTAMP NULL DEFAULT NULL,
