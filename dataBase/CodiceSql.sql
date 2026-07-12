@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS utenti (
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     ruolo ENUM('user', 'admin') DEFAULT 'user',
-    punti_karma INT DEFAULT 10,
-    iban VARCHAR(34) DEFAULT NULL,
+    punti_karma INT DEFAULT 50,
+    -- DROP COLUMN iban VARCHAR(34) DEFAULT NULL,
     codice_conferma VARCHAR(6) DEFAULT NULL,
-    stato_account ENUM('Non_Confermato', 'attivo', 'bannato') DEFAULT 'Non_Confermato',
+    stato_account ENUM('non_confermato', 'attivo', 'bannato') DEFAULT 'non_confermato',
     creato_il TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -46,14 +46,14 @@ CREATE TABLE IF NOT EXISTS transazioni (
     id_utente_aiutante INT NOT NULL,
     durata_ore_max INT NOT NULL,
     penalita_ora_karma INT NOT NULL,
-    penale_denaro_min DECIMAL(10,2) NOT NULL,
-    valore_stima_oggetto DECIMAL(10,2) NOT NULL,
+    -- DROP COLUMN penale_denaro_min DECIMAL(10,2) NOT NULL,
+    valore_oggetti_karma INT NOT NULL,
     foto_oggetto VARCHAR(255) DEFAULT NULL, -- Qui l'utente salverà un URL testuale per non superare i 5MB!
     minuti_arrivo_proprietario INT DEFAULT NULL,
     codice_restituzione VARCHAR(4) DEFAULT NULL,
     data_inizio_effettiva TIMESTAMP NULL DEFAULT NULL,
     data_restituzione_effettiva TIMESTAMP NULL DEFAULT NULL,
-    stato_transazione ENUM('proposta', 'accettata', 'in_corso', 'ritardo_morbido', 'bloccato_denaro', 'riscatto_totale', 'completato') DEFAULT 'proposta',
+    stato_transazione ENUM('proposta','in_corso','ritardo_morbido','riscatto_totale','completato') DEFAULT 'proposta',
     FOREIGN KEY (id_post) REFERENCES bacheca(id) ON DELETE CASCADE,
     FOREIGN KEY (id_utente_aiutante) REFERENCES utenti(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
